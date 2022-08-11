@@ -27,17 +27,20 @@
         include '../../components/navbar.php';
     ?>
     <div class="text-center">
-      <h1>Welcome <?php echo $_SESSION['fullName']; ?></h1>
+      <h1>Halo, <?php echo $_SESSION['fullName']; ?></h1>
     </div>
     <div class="container">
+      <div class="mb-3">
+        <h4>File yang sudah diunggah</h4>
+      </div>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">File Name</th>
-            <th scope="col">Upload by</th>
-            <th scope="col">Upload on</th>
-            <th scope="col">Action</th>
+            <th scope="col">Nama File</th>
+            <th scope="col">Diunggah oleh</th>
+            <th scope="col">Tanggal diunggah</th>
+            <th scope="col">Pilihan</th>
           </tr>
         </thead>
         <tbody>
@@ -52,10 +55,10 @@
             while ($row = $result->fetch_assoc()) {
                 echo '<tr>';
                 echo '<th scope="row">'.$i.'</th>';
-                echo '<td>'.$files[$j].'</td>';
+                echo '<td>'.$row['name'].'</td>';
                 echo '<td>'.$row['fullName'].'</td>';
                 echo '<td>'.$row['upload_time'].'</td>';
-                echo '<td> <a href="'.$directory.'/'.$files[$j].'" target="_blank">View</a> </td>';
+                echo '<td> <a href="'.$directory.'/'.$row['name'].'" target="_blank">Lihat</a> </td>';
                 echo '</tr>';
                 $i++;
                 $j++;
