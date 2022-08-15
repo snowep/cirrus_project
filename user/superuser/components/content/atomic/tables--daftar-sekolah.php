@@ -26,7 +26,7 @@
                                 <tr>
                                     <td><?php echo $row['nama']; ?></td>
                                     <td>
-                                        <a href="view-sekolah.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-primary btn-rounded">
+                                        <a href="view--detail-sekolah.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-primary btn-rounded">
                                             <i data-feather="eye" class="feather-icon"></i>
                                             Lihat
                                         </a>

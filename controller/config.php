@@ -39,21 +39,28 @@ class Database
         if ($row['total'] == 0) {
             $query = "INSERT INTO sekolah (nama) VALUES ('$nama')";
             $result = $this->connection->query($query);
+
+            $query2 = "SELECT * FROM sekolah WHERE nama = '$nama'";
+            $result2 = $this->connection->query($query2);
+            $row2 = $result2->fetch_assoc();
+            $idSekolah = $row2['id'];
+            $this->connection->query("INSERT INTO info_sekolah (sekolah_id) VALUES ('$idSekolah')");
             if ($result) {
                 return true;
             } else {
                 return false;
             }
         } else {
+            header("location:list--data-sekolah.php?error=409");
             return false;
         }
     }
 
     public function getSekolah($id = null)
     {
-        $query = "SELECT * FROM sekolah";
+        $query = "SELECT * FROM sekolah INNER JOIN info_sekolah ON sekolah.id = info_sekolah.sekolah_id";
         if ($id != null) {
-            $query .= " WHERE id = $id";
+            $query .= " WHERE sekolah.id = $id";
         }
         $result = $this->connection->query($query);
         return $result;
